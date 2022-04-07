@@ -12,6 +12,7 @@
           type="text"
           placeholder="Enter username"
         ></b-form-input>
+        <p v-if="errors.usernameError">{{ errors.usernameError }}</p>
       </b-form-group>
 
       <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
@@ -21,24 +22,12 @@
           type="password"
           placeholder="Enter password"
         ></b-form-input>
+        <p v-if="errors.passwordError">{{ errors.passwordError }}</p>
       </b-form-group>
 
-      <b-form-group
-        id="input-group-3"
-        label="Email address:"
-        label-for="input-3"
-        description="We'll never share your email with anyone else."
-        >
-        <b-form-input
-          id="input-3"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Register</b-button>
+      <b-button type="submit" variant="primary">Log in!</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
+      <p v-if="errors.error">{{ errors.error }}</p>
     </b-form>
   </div>
 </template>
@@ -53,13 +42,11 @@
         form: {
           username: '',
           password: '',
-          email: ''
         },
         errors: {
-          usernameError: '',
-          passwordError: '',
-          emailError: '',
-          error: ''
+          usernameError: null,
+          passwordError: null,
+          error: null
         },
         show: true
       }
@@ -70,18 +57,19 @@
         const user = {
             username: this.form.username,
             password: this.form.password,
-            email: this.form.email
         }
-        this.createUser(user)
+        this.login(user)
       },
 
-      async createUser(user) {
+      async login(user) {
         try {
           const payload = user
-          const result = await this.$store.dispatch('users/createUser', payload)
-          this.$router.push('/login')
-        } catch(e) {
-          console.log(e)
+          await this.$store.dispatch('users/login', payload)
+          window.location = '/'; // to ci odswiezy strone
+        } catch(error) {
+          this.errors.error = error.frontendMessage
+          this.errors.usernameError = error.usernameError
+          this.errors.passwordError = error.passwordError
         }
       },
 
@@ -90,7 +78,6 @@
         // Reset our form values
         this.form.username = ''
         this.form.password = ''
-        this.form.email = ''
         // Trick to reset/clear native browser form validation state
         this.show = false
         this.$nextTick(() => {
@@ -103,21 +90,21 @@
 <!--
 <script>
   import { validationMixin } from 'vuelidate'
-  import { required, maxLength, minLength, email } from 'vuelidate/lib/validators'
+  import { required } from 'vuelidate/lib/validators'
 
   export default {
+    layout: 'register',
 
     mixins: [validationMixin],
 
     validations: {
-      username: { required, maxLength: maxLength(10) },
-      password: { required, minLength: minLength(7) },
-      email: { required, email },
+      username: { required },
+      password: { required }
+
     },
 
     data: () => ({
       username: '',
-      email: '',
       password: '',
     }),
 
@@ -125,22 +112,13 @@
       usernameErrors () {
         const errors = []
         if (!this.$v.username.$dirty) return errors
-        !this.$v.username.maxLength && errors.push('Username must be at most 10 characters long')
         !this.$v.username.required && errors.push('Username is required.')
         return errors
       },
       passwordErrors () {
         const errors = []
         if (!this.$v.password.$dirty) return errors
-        !this.$v.password.minLength && errors.push('Password must be longer than 6 characters')
         !this.$v.password.required && errors.push('Password is required.')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
         return errors
       },
     },
@@ -150,20 +128,19 @@
         this.$v.$reset()
         this.username = ''
         this.password = ''
-        this.email = ''
       },
-      async submit() {
+      async login() {
           try {
               const user = {
                 username: this.username,
-                password: this.password,
-                email: this.email
+                password: this.password
               }
               const payload = user
-              const result = await this.$store.dispatch('users/createUser', payload)
-              this.$router.push('/login')
+              const token = await this.$store.dispatch('users/login', payload)
+              await this.$store.dispatch('users/authme', token)
+              this.$router.push('/')
           } catch(e) {
-              this.e = 'Rejestracja nie powiodła się...'
+              this.e = 'Logowanie nie powiodło się...'
               console.log(e)
           }
       }

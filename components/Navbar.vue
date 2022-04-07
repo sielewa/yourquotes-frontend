@@ -1,63 +1,32 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer 
-      v-model="drawer"
-      app
-      >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Application
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            subtext
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list
-          dense
-          nav
-      >
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          :to="item.to"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Quotations app</v-toolbar-title>
-    </v-app-bar>
-
-    <v-main>
-      <router-view></router-view>
-    </v-main>
-  </v-app>
+  <nav class="navbar is-light">
+    <div class="container">
+      <div class="navbar-brand">
+        <nuxt-link class="navbar-item" to="/">Nuxt Auth</nuxt-link>
+        <button class="button navbar-burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              My Account
+            </a>
+            <div class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/profile">My Profile</nuxt-link>
+              <hr class="navbar-divider"/>
+              <a class="navbar-item">Logout</a>
+            </div>
+          </div>
+          <template>
+            <nuxt-link class="navbar-item" to="/register">Register</nuxt-link>
+            <nuxt-link class="navbar-item" to="/login">Log In</nuxt-link>
+          </template>
+        </div>
+      </div>
+    </div>
+  </nav>
 </template>
-
-<script>
-  export default {
-    data: () => ({ 
-      drawer: null,
-      items: [
-        { title: 'Quotations', icon: 'mdi-format-quote-close', to: '/' },
-        { title: 'About', icon: 'mdi-help-box', to: '/about' }
-      ],
-    }),
-  }
-</script>

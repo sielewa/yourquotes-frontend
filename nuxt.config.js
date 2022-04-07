@@ -19,13 +19,31 @@ export default {
     ]
   },
 
+  server: {
+    host: process.env.HOST,
+    port: process.env.PORT,
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~assets/scss/style.scss'
   ],
+  
+  js: [
+    '@/assets/js/bootstrap.min.js'
+  ],
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      brands: true
+    }
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios.js',
+    { src: '~/plugins/intervalToken.js', ssr: false},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,29 +55,51 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/fontawesome',
+    '@nuxtjs/eslint-module',
   ],
 
+  /*
+  styleResources: {
+    scss: [
+      '~assets/scss/mixins.scss',
+      '~assets/scss/variables.scss',
+    ]
+  },*/
+
+  ssr: true,
+  target: 'server',
+  
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    'bootstrap-vue/nuxt',
+    ['cookie-universal-nuxt', { alias: 'cookiz'}],
   ],
 
   axios: {
     proxy: true,
-    credentials: true
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.BASE_URL,
+    },
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.BROWSER_BASE_URL,
+    },
   },
 
   proxy: {
-    '/api/': {
-      target: `${process.env.API_URL}/api`,
-      changeOrigin: true,
-      pathRewrite: {'^/api/': ''}
-    }
+    '/api/': process.env.BASE_URL,
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/scss/variables.scss'],
     theme: {
       dark: true,
       themes: {
@@ -78,5 +118,6 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCSS: true,
   }
 }
