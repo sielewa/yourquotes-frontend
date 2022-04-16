@@ -44,6 +44,7 @@ export default {
   plugins: [
     '~/plugins/axios.js',
     { src: '~/plugins/intervalToken.js', ssr: false},
+    '@/plugins/bootstrap-vue.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -54,9 +55,8 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
     '@nuxtjs/fontawesome',
-    '@nuxtjs/eslint-module',
+    //'@nuxtjs/eslint-module',
   ],
 
   /*
@@ -73,12 +73,18 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/style-resources',
     'bootstrap-vue/nuxt',
     ['cookie-universal-nuxt', { alias: 'cookiz'}],
   ],
 
+  styleResources: {
+    scss: ['./assets/scss/*.scss']
+  },
+
   axios: {
     proxy: true,
+    credentials: true
   },
 
   privateRuntimeConfig: {
@@ -98,23 +104,6 @@ export default {
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify: {
-    customVariables: ['~/assets/scss/variables.scss'],
-    theme: {
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
-        }
-      }
-    }
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

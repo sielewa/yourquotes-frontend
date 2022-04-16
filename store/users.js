@@ -50,8 +50,8 @@ export const actions = {
                 return
             }
 
-            this.$axios.setToken(accessToken, 'Bearer');
-            this.$axios.setToken(refreshToken, 'Bearer');
+            //this.$axios.setToken(accessToken, 'Bearer');
+            //this.$axios.setToken(refreshToken, 'Bearer');
             commit('SET_TOKEN', accessToken);
 
             if (res) {
@@ -90,11 +90,15 @@ export const actions = {
     },
 
     async logout ({ commit }) {
-        this.$cookies.remove('access_token');
-        this.$cookies.remove('refresh_token');
-        await this.$axios.delete('/api/auth/refreshToken');
-        commit('SET_USER', null)
-        window.location = '/login';
+        try {
+            //this.$cookiz.remove('access_token');
+            //this.$cookiz.remove('refresh_token');
+            //await this.$axios.$delete('/api/auth/refreshToken')
+            const res = await this.$axios.$post('/api/auth/logout')
+            
+        } catch (err) {
+            console.dir(err);
+        }
     },
 
     async createUser ({ commit }, payload) {

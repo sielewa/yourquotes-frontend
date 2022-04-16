@@ -1,56 +1,71 @@
 <template>
-  <div>
-    <b-form @submit.stop.prevent="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Username:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.username"
-          type="text"
-          placeholder="Enter username"
-        ></b-form-input>
-        <p v-if="errors.usernameError">{{ errors.usernameError }}</p>
-      </b-form-group>
-
-      <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.password"
-          type="password"
-          placeholder="Enter password"
-        ></b-form-input>
-        <p v-if="errors.passwordError">{{ errors.passwordError }}</p>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Log in!</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-      <p v-if="errors.error">{{ errors.error }}</p>
-    </b-form>
+  <div class="limiter">
+    <div class="container-login">
+      <div class="warp-login">
+        <!--<form class="login_form" @submit.stop.prevent="onSubmit"> 
+          <input v-model="username" type="text" placeholder="Username" label="Username" name="username"><br>
+          <p v-if="errors.usernameError" class="form_error">{{ errors.usernameError }}</p>
+          <input v-model="password" type="text" placeholder="Password" label="Password" name="password"><br>
+          <p v-if="errors.passwordError" class="form_error">{{ errors.passwordError }}</p>
+          <button type="button" class="btn btn-success">Log in</button>
+          <p v-if="errors.error" class="form_error">{{ errors.error }}</p>
+        </form>-->
+        <LoginForm/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  export default {
+    layout: 'register'
+  }
+</script>
+
+<style lang="scss" scoped>
+  .limiter {
+    width: 100%;
+    margin: 0 auto;
+    background-color: red;
+  }
+
+  .container-login{
+    width: 100%;  
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+    background-color: #fff;
+  }
+
+  .wrap-login{
+    width: 500px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+</style>
+
+
+<!--<script>
 
   export default {
     layout: 'register',
 
-    data() {
-      return {
-        form: {
+    data: () => ({
+          valid: false,
           username: '',
           password: '',
-        },
-        errors: {
-          usernameError: null,
-          passwordError: null,
-          error: null
-        },
-        show: true
-      }
-    },
+          nameRules: [
+            v => !!v || 'Name is required'
+          ],
+          passwordRules: [
+            v => !!v || 'Password is required'
+          ]
+        }),
 
     methods: {
       async onSubmit() {
@@ -86,65 +101,4 @@
       }
     }
   }
-</script>
-<!--
-<script>
-  import { validationMixin } from 'vuelidate'
-  import { required } from 'vuelidate/lib/validators'
-
-  export default {
-    layout: 'register',
-
-    mixins: [validationMixin],
-
-    validations: {
-      username: { required },
-      password: { required }
-
-    },
-
-    data: () => ({
-      username: '',
-      password: '',
-    }),
-
-    computed: {
-      usernameErrors () {
-        const errors = []
-        if (!this.$v.username.$dirty) return errors
-        !this.$v.username.required && errors.push('Username is required.')
-        return errors
-      },
-      passwordErrors () {
-        const errors = []
-        if (!this.$v.password.$dirty) return errors
-        !this.$v.password.required && errors.push('Password is required.')
-        return errors
-      },
-    },
-
-    methods: {
-      clear () {
-        this.$v.$reset()
-        this.username = ''
-        this.password = ''
-      },
-      async login() {
-          try {
-              const user = {
-                username: this.username,
-                password: this.password
-              }
-              const payload = user
-              const token = await this.$store.dispatch('users/login', payload)
-              await this.$store.dispatch('users/authme', token)
-              this.$router.push('/')
-          } catch(e) {
-              this.e = 'Logowanie nie powiodło się...'
-              console.log(e)
-          }
-      }
-    },
-  }
-
 </script>-->

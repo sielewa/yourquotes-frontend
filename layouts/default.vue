@@ -1,16 +1,27 @@
 <template>
   <div>
-    <Navbar/>
-    <nuxt/>
+    <Navbar />
+    <Nuxt />
   </div>
 </template>
 
-<script>
-import Navbar from '~/components/Navbar'
+<style lang="scss">
 
-export default {
-  components: {
-    Navbar
-  }
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
-</script>
+
+body{
+  max-width: 100%;
+	height: 100%;
+  background-color: #ffff;
+}
+
+html{
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+</style>

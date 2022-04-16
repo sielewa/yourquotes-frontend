@@ -4,8 +4,8 @@ export default function ({ $axios, redirect }) {
   });
 
   $axios.onError(error => {
-    console.log(`[${err.response && err.response.status}] ${err.response && err.response.request.path}`);
-    console.log(err.response && err.response.data);
+    console.log(`[${error.response && error.response.status}] ${error.response && error.response.request.path}`);
+    console.log(error.response && error.response.data);
     if(error.response.status === 401){
       error.frontendMessage = error.response.data.message;
     }
@@ -16,6 +16,9 @@ export default function ({ $axios, redirect }) {
         }
         if(errorMessage.param === 'password'){
           error.passwordError = errorMessage.msg
+        }
+        if(errorMessage.param === 'text'){
+          error.textError = errorMessage.msg
         }
       }
     }

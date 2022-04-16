@@ -1,14 +1,26 @@
 <template>
-    <div class="font-mono bg-gray-400">
-        <div class="container mx-auto">
-            <div class="flex justify-center px-6 my-12 w-full">
-                <div class="w-full xl:w-3/4 lg:w-11/12 flex">
-                    <div class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"></div>
-                    <div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-                        <Nuxt />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <Nuxt/>
 </template>
+
+<style lang="scss">
+
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body{
+    max-width: 100%;
+	height: 100%;
+    $primary: #A649D7;
+    $secondary: #C09DCE;
+    background-color: #ffff;
+}
+
+html{
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+</style>

@@ -18,8 +18,6 @@
 
   export default (ctx) => {
     setInterval(async () => {
-      const username = ctx.store.getters['users/getUser'];
-      console.dir(username)
       await ctx.store.dispatch('users/checkRefreshToken', ctx);
     }, 30000)
   };
