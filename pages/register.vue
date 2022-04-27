@@ -1,173 +1,42 @@
 <template>
-  <div>
-    <b-form @submit.stop.prevent="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="input-group-1"
-        label="Username:"
-        label-for="input-1"
-      >
-        <b-form-input
-          id="input-1"
-          v-model="form.username"
-          type="text"
-          placeholder="Enter username"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group id="input-group-2" label="Your Password:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          v-model="form.password"
-          type="password"
-          placeholder="Enter password"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-3"
-        label="Email address:"
-        label-for="input-3"
-        description="We'll never share your email with anyone else."
-        >
-        <b-form-input
-          id="input-3"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter email"
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Register</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-    </b-form>
+  <div class="limiter">
+    <div class="container-login">
+      <div class="warp-login">
+        <RegisterForm/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
   export default {
-    layout: 'register',
-
-    data() {
-      return {
-        form: {
-          username: '',
-          password: '',
-          email: ''
-        },
-        errors: {
-          usernameError: '',
-          passwordError: '',
-          emailError: '',
-          error: ''
-        },
-        show: true
-      }
-    },
-
-    methods: {
-      async onSubmit() {
-        const user = {
-            username: this.form.username,
-            password: this.form.password,
-            email: this.form.email
-        }
-        this.createUser(user)
-      },
-
-      async createUser(user) {
-        try {
-          const payload = user
-          const result = await this.$store.dispatch('users/createUser', payload)
-          this.$router.push('/login')
-        } catch(e) {
-          console.log(e)
-        }
-      },
-
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.username = ''
-        this.form.password = ''
-        this.form.email = ''
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
-      }
-    }
+    layout: 'register'
   }
 </script>
-<!--
-<script>
-  import { validationMixin } from 'vuelidate'
-  import { required, maxLength, minLength, email } from 'vuelidate/lib/validators'
 
-  export default {
-
-    mixins: [validationMixin],
-
-    validations: {
-      username: { required, maxLength: maxLength(10) },
-      password: { required, minLength: minLength(7) },
-      email: { required, email },
-    },
-
-    data: () => ({
-      username: '',
-      email: '',
-      password: '',
-    }),
-
-    computed: {
-      usernameErrors () {
-        const errors = []
-        if (!this.$v.username.$dirty) return errors
-        !this.$v.username.maxLength && errors.push('Username must be at most 10 characters long')
-        !this.$v.username.required && errors.push('Username is required.')
-        return errors
-      },
-      passwordErrors () {
-        const errors = []
-        if (!this.$v.password.$dirty) return errors
-        !this.$v.password.minLength && errors.push('Password must be longer than 6 characters')
-        !this.$v.password.required && errors.push('Password is required.')
-        return errors
-      },
-      emailErrors () {
-        const errors = []
-        if (!this.$v.email.$dirty) return errors
-        !this.$v.email.email && errors.push('Must be valid e-mail')
-        !this.$v.email.required && errors.push('E-mail is required')
-        return errors
-      },
-    },
-
-    methods: {
-      clear () {
-        this.$v.$reset()
-        this.username = ''
-        this.password = ''
-        this.email = ''
-      },
-      async submit() {
-          try {
-              const user = {
-                username: this.username,
-                password: this.password,
-                email: this.email
-              }
-              const payload = user
-              const result = await this.$store.dispatch('users/createUser', payload)
-              this.$router.push('/login')
-          } catch(e) {
-              this.e = 'Rejestracja nie powiodła się...'
-              console.log(e)
-          }
-      }
-    },
+<style lang="scss" scoped>
+  .limiter {
+    width: 100%;
+    margin: 0 auto;
+    background-color: red;
   }
 
-</script>-->
+  .container-login{
+    width: 100%;  
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+    background-color: #fff;
+  }
+
+  .wrap-login{
+    width: 500px;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+</style>

@@ -20,6 +20,9 @@ export default function ({ $axios, redirect }) {
         if(errorMessage.param === 'text'){
           error.textError = errorMessage.msg
         }
+        if(errorMessage.param === 'email'){
+          error.emailError = errorMessage.msg
+        }
       }
     }
   })

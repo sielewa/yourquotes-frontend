@@ -20,9 +20,8 @@ export const actions = {
     },
     
     async getQuotations ({commit}, requestQuery){
-        return await this.$axios.$get('/api/quotations',{
-            params: requestQuery
-        })
+        return await this.$axios.$get('/api/quotations', {params: requestQuery})
+        // {params: requestQuery}
     },
     async deleteQuote ({commit}, payload){
         return await this.$axios.$delete(`/api/quotations/${payload}`)

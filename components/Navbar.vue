@@ -9,7 +9,7 @@
         <li class="list_item">
           <NuxtLink to="/">Home</NuxtLink>
         </li>
-        <li class="list_item">
+        <li v-if="isLoggedIn" class="list_item">
           <NuxtLink to="/add">Add Quote</NuxtLink>
         </li>
 
@@ -51,6 +51,9 @@
       bar.addEventListener('click', () => {
         navLink.classList.toggle('hide');
       });
+
+      window.onscroll = function() {scrollFunction()};
+
     },
 
     methods:{
@@ -61,6 +64,15 @@
 
         } catch (err) {
           console.log(err);
+        }
+      },
+      scrollFunction() {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+          document.querySelector(".nav").style.padding = "30px 10px";
+          document.querySelector(".nav-logo").style.fontSize = "25px";
+        } else {
+          document.querySelector(".nav").style.padding = "80px 10px";
+          document.querySelector(".nav-logo").style.fontSize = "35px";
         }
       }
     }
@@ -89,11 +101,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 20px;
     background-color: $primary;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: 600;
+    padding: 30px 30px; /* Large padding which will shrink on scroll (using JS) */
+    transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+    position: fixed; /* Sticky/fixed navbar */
+    width: 100%;
+    top: 0; /* At the top */
+    z-index: 99;
   }
 
   .nav-logo{

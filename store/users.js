@@ -62,6 +62,15 @@ export const actions = {
         }
     },
 
+    async getUser({dispatch, commit}, payload){
+        try{
+            const result = await this.$axios.$get(`/api/users/${payload}`)
+            return result.user
+        } catch(err){
+            console.log(err)
+        }
+    },
+
     async authMe({ dispatch, commit }){
         try{
             const result = await this.$axios.get('/api/auth/me')

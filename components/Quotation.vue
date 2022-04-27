@@ -1,16 +1,20 @@
 <template>
-    <div class="quotation_container">
-        <div class="quotation_text">
-            <span class="quo"> {{ text }}</span>
+  <div class="quote_container">
+    <div class="top_container">
+        <div class="author_container">
+            <span> <NuxtLink :to="`/users/${author}`"> {{ author }} </NuxtLink> </span>
         </div>
-        <button v-if="isAuthor" type="button" class="btn btn-danger" @click="deleteQuote">Delete</button>
-        <div class="container_bottom">
-            <span class="author"> Author: {{ author }} </span>
-            <div class="date_container">
-                <span class="date"> Created: {{ date }} | {{ time }} </span>
-            </div>
+        <div class="del">
+            <font-awesome-icon v-if="isAuthor" icon="x" @click="deleteQuote"/>
         </div>
     </div>
+    <div class="quotation_text">
+        <span> "{{ text }}" </span>
+    </div>
+    <div class="date_container">
+        <span> {{ time }} | {{ date }} </span>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -54,24 +58,102 @@ export default {
 </script>
 
 <style lang="scss">
-    .quotation_container{
+    .quote_container {
         display: flex;
-        justify-content: space-between;
         flex-direction: column;
-        margin: 10px 10px;
-        background-color: $secondary;
-        width: 300px;
-        height: 100px;
+        margin: 20px 10px;
+        max-width: 700px;
+        min-width: 700px;
+        min-height: 120px;
 
-        & > .quotation_text{
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        & > .container_bottom{
+        & > .top_container {
             display: flex;
             justify-content: space-between;
 
+            & > .author_container {
+                font-size: 2.5rem;
+                padding-bottom: 5px;
+                padding-left: 20px;
+
+                & > span a{
+                    color: black;
+                }
+                & > span a:hover{
+                    text-decoration: underline;
+                }
+            }
+
+            & > .del {
+                padding-top: 10px;
+                padding-right: 10px;
+                & > svg { 
+                    font-size: 2.5rem;
+                    color: red;
+                    background: none;
+                }
+                & :hover{
+                    color: #961B1B;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        & > .quotation_text {
+            background-color: $secondary;
+            font-family: 'Dancing Script', cursive;
+            width: 100%;
+            padding: 10px;
+            font-size: 4rem;
+            text-align: center;
+            border-radius: 30px;
+        }
+
+        & > .date_container{
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: right;
+            padding-top: 5px;
+            padding-right: 20px;
+        }
+
+        @media (max-width: $screen-md) {
+            min-width: 600px;
+
+            .top_container > .author_container {
+                font-size: 2rem;
+            }
+
+            .top_container > .del > svg { 
+                font-size: 2rem;
+            }
+
+            .quotation_text {
+                font-size: 3rem;
+            }
+
+            .date_container {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: $screen-sm) {
+            min-width: 300px;
+
+            .quotation_text {
+                font-size: 2.5rem;
+            }
+
+            .top_container > .author_container {
+                font-size: 1.5rem;
+            }
+
+            .top_container > .del > svg { 
+                font-size: 1.5rem;
+            }
+
+            .date_container {
+                font-size: 1.1rem;
+            }
         }
 
     }

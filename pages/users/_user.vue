@@ -1,25 +1,21 @@
 <template>
     <section class="section">
-        <div class="container">
-            <h2 class="title">User Profile</h2>
-            <div class="content">
-                <p>
-                    <strong>Username:</strong>
-                    {{ username }}
-                </p>
-            </div>
-        </div>
+        <UserContainer 
+            :username="user.username" 
+            :quotations_count="user.quotations_count" 
+            :last_quotations="user.quotations" 
+        />
     </section>
 </template>
 
 <script>
 
     export default {
-        middleware: ['is-logged-in'],
 
         async asyncData({ store, route }){
             const username = route.params.user
-            return { username }
+            const user = await store.dispatch('users/getUser', username)
+            return { user }
         }
     }
 </script>

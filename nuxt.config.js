@@ -15,7 +15,10 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { href: "https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap", rel: "stylesheet" },
+      { href: "https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;400;700&display=swap", rel: "stylesheet" }
     ]
   },
 
@@ -36,7 +39,6 @@ export default {
   fontawesome: {
     icons: {
       solid: true,
-      brands: true
     }
   },
 
