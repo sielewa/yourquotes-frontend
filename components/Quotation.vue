@@ -77,10 +77,30 @@ export default {
 
                 & > span a{
                     color: black;
+                    text-decoration: none;
+                    display: inline-block;
+                    position: relative;
+
+                    &:after {    
+                        background: none repeat scroll 0 0 transparent;
+                        bottom: 0;
+                        content: "";
+                        display: block;
+                        height: 2px;
+                        left: 50%;
+                        position: absolute;
+                        background: black;
+                        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                        width: 0;
+                    }
+
+                    &:hover:after { 
+                    width: 100%; 
+                    left: 0; 
+                    }
                 }
-                & > span a:hover{
-                    text-decoration: underline;
-                }
+
+                    
             }
 
             & > .del {
@@ -117,7 +137,7 @@ export default {
         }
 
         @media (max-width: $screen-md) {
-            min-width: 600px;
+            min-width: 550px;
 
             .top_container > .author_container {
                 font-size: 2rem;

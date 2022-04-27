@@ -38,6 +38,14 @@
 
             & > .username {
                 font-size: 7rem;
+
+                @media (max-width: $screen-md) {
+                    font-size: 5.5rem;
+                }
+
+                @media (max-width: $screen-sm) {
+                    font-size: 4.8rem;
+                }
             }
             
         }
@@ -46,6 +54,14 @@
             
             & > .stats {
                 font-size: 3rem;
+
+                @media (max-width: $screen-md) {
+                    font-size: 2.2rem;
+                }
+
+                @media (max-width: $screen-sm) {
+                    font-size: 1.8rem;
+                }
             }
         }
     }

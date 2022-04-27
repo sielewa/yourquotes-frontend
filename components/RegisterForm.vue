@@ -6,16 +6,16 @@
         </div>
         <form @submit.stop.prevent="onSubmit">
           <div class="inputs">
-            <div class="form_input">
+            <div class="input_form">
                 <span>Username:</span>
                 <input v-model="form.username" type="username" class="" placeholder="Enter username">
                 
             </div>
-            <div class="form_input">
+            <div class="input_form">
                 <span>Password:</span>
                 <input v-model="form.password" type="password" class="" placeholder="Enter Password">
             </div>
-            <div class="form_input">
+            <div class="input_form">
                 <span>E-mail:</span>
                 <input v-model="form.email" type="email" class="" placeholder="Enter E-mail">
             </div>
@@ -37,7 +37,7 @@
 .register_container {
 
   .register_form{
-    width: 600px;
+    min-width: 600px;
     padding: 10px 10px 10px 10px;
     background-color: #ffff;
     border: 2px solid black;
@@ -56,7 +56,7 @@
       padding: 20px 0;
     }
 
-    .form_input {
+    .input_form {
       padding: 10px 20px;
       display: flex;
       justify-content: space-between;
@@ -75,6 +75,44 @@
         &:focus {
           outline: none !important;
           border: 1px solid $primary;
+        }
+      }
+    }
+
+    @media (max-width: $screen-md) {
+      min-width: 450px;
+
+      .title {
+        font-size: 3.2rem;
+      }
+
+      .input_form {
+        
+        span {
+          font-size: 2rem;
+        }
+
+        input {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    @media (max-width: $screen-sm) {
+      min-width: 300px;
+
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .input_form {
+        
+        span {
+          font-size: 1.4rem;
+        }
+
+        input {
+          font-size: 1.4rem;
         }
       }
     }

@@ -1,7 +1,7 @@
 <template>
   <div class="nav-container">
     <nav class="nav">
-      <a class="nav-logo" href="#">Logo</a>
+      <NuxtLink to="/">YourQuotes</NuxtLink>
       <div class="nav-bar">
         <font-awesome-icon class="menu_toggle_icon" icon="bars"/>
       </div>

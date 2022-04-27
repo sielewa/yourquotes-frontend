@@ -32,7 +32,7 @@
 .login_container {
 
   .login_form {
-    width: 600px;
+    min-width: 600px;
 
     padding: 10px 10px 10px 10px;
     background-color: #ffff;
@@ -71,6 +71,44 @@
         &:focus {
           outline: none !important;
           border: 1px solid $primary;
+        }
+      }
+    }
+
+    @media (max-width: $screen-md) {
+      min-width: 450px;
+
+      .title {
+        font-size: 3.2rem;
+      }
+
+      .input_form {
+        
+        span {
+          font-size: 2rem;
+        }
+
+        input {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    @media (max-width: $screen-sm) {
+      min-width: 300px;
+
+      .title {
+        font-size: 2.8rem;
+      }
+
+      .input_form {
+        
+        span {
+          font-size: 1.4rem;
+        }
+
+        input {
+          font-size: 1.4rem;
         }
       }
     }

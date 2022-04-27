@@ -24,6 +24,28 @@
         & > .description > span {
             font-size: 3rem;
         }
+
+        @media (max-width: $screen-md) {
+
+            .title > span {
+                font-size: 5.3rem;
+            }
+
+            .description > span {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: $screen-sm) {
+
+            .title > span {
+                font-size: 4rem;
+            }
+
+            .description > span {
+                font-size: 1.8rem;
+            }
+        }
     }
     
 

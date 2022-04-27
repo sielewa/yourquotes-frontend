@@ -48,6 +48,23 @@
         border: 1px solid black;
         resize: none;
       }
+
+      @media (max-width: $screen-md) {
+        max-width: 500px;
+        min-width: 500px;
+
+        textarea {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: $screen-sm) {
+        min-width: 300px;
+
+        textarea {
+          font-size: 1.5rem;
+        }
+      }
     }
 </style>
 
