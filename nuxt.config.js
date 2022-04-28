@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - cytatys-frontend',
-    title: 'cytatys-frontend',
+    titleTemplate: '%s',
+    title: 'YourQuotes',
     htmlAttrs: {
       lang: 'pl'
     },
@@ -31,7 +31,7 @@ export default {
   css: [
     '~assets/scss/style.scss'
   ],
-  
+
   js: [
     '@/assets/js/bootstrap.min.js'
   ],
@@ -71,7 +71,7 @@ export default {
 
   ssr: true,
   target: 'server',
-  
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios',
