@@ -1,36 +1,43 @@
 <template>
-    <div class="login_container">
-      <div class="login_form">
-        <div class="title">
-          <span>Log in to YourQuotes!</span>
-        </div>
-        <form @submit.stop.prevent="onSubmit">
-          <div class="inputs">
-            <div class="input_form">
-                <span>Username:</span>
-                <input v-model="username" type="username" class="" placeholder="Enter username">
-                
-            </div>
-            <div class="input_form">
-                <span>Password:</span>
-                <input v-model="password" type="password" class="" placeholder="Enter Password">
-            </div>
-          </div>
-          <div class="submit">
-            <Button element="submit" value="Log in" />
-          </div>
-        </form>
+  <div class="login_container">
+    <div class="login_form">
+      <div class="title">
+        <span>Log in to YourQuotes!</span>
       </div>
-      <p v-if="errors.usernameError" class="error">{{ errors.usernameError }}</p>
-      <p v-if="errors.error" class="error">{{ errors.error }}</p>
-      <p v-if="errors.passwordError" class="error">{{ errors.passwordError }}</p>
+      <form @submit.stop.prevent="onSubmit">
+        <div class="inputs">
+          <div class="input_form">
+            <span>Username:</span>
+            <input
+              v-model="username"
+              type="username"
+              class=""
+              placeholder="Enter username"
+            />
+          </div>
+          <div class="input_form">
+            <span>Password:</span>
+            <input
+              v-model="password"
+              type="password"
+              class=""
+              placeholder="Enter Password"
+            />
+          </div>
+        </div>
+        <div class="submit">
+          <Button element="submit" value="Log in" />
+        </div>
+      </form>
     </div>
+    <p v-if="errors.usernameError" class="error">{{ errors.usernameError }}</p>
+    <p v-if="errors.error" class="error">{{ errors.error }}</p>
+    <p v-if="errors.passwordError" class="error">{{ errors.passwordError }}</p>
+  </div>
 </template>
 
 <style lang="scss">
-
 .login_container {
-
   .login_form {
     min-width: 600px;
 
@@ -83,7 +90,6 @@
       }
 
       .input_form {
-        
         span {
           font-size: 2rem;
         }
@@ -102,7 +108,6 @@
       }
 
       .input_form {
-        
         span {
           font-size: 1.4rem;
         }
@@ -121,56 +126,42 @@
     color: red;
   }
 }
-
-
 </style>
 
 <script>
 export default {
-    name: 'LoginForm',
+  name: "LoginForm",
 
-    data: () => ({
-      username: '',
-      password: '',
-      errors: {
-        error: '',
-        usernameError: '',
-        passwordError: '',
-      }
-    }),
+  data: () => ({
+    username: "",
+    password: "",
+    errors: {
+      error: "",
+      usernameError: "",
+      passwordError: "",
+    },
+  }),
 
-    methods: {
-      async onSubmit() {
-        const user = {
-            username: this.username,
-            password: this.password,
-        }
-        this.login(user)
-      },
+  methods: {
+    async onSubmit() {
+      const user = {
+        username: this.username,
+        password: this.password,
+      };
+      this.login(user);
+    },
 
-      async login(user) {
-        try {
-          const payload = user
-          await this.$store.dispatch('users/login', payload)
-          window.location = '/'; // to ci odswiezy strone
-        } catch(error) {
-          this.errors.error = error.frontendMessage
-          this.errors.usernameError = error.usernameError
-          this.errors.passwordError = error.passwordError
-        }
-      },
-
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.form.username = ''
-        this.form.password = ''
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
+    async login(user) {
+      try {
+        const payload = user;
+        await this.$store.dispatch("users/login", payload);
+        window.location = "/";
+      } catch (error) {
+        this.errors.error = error.frontendMessage;
+        this.errors.usernameError = error.usernameError;
+        this.errors.passwordError = error.passwordError;
       }
     },
-}
+  },
+};
 </script>

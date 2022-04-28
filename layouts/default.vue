@@ -6,38 +6,37 @@
 </template>
 
 <style lang="scss">
-
-*{
+* {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-body{
+body {
   max-width: 100%;
-	height: 100%;
+  height: 100%;
   background-color: #ffff;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-html{
+html {
   scroll-behavior: smooth;
   height: 100%;
 }
 
 .section {
-    margin-top: 90px;
-  }
+  margin-top: 90px;
+}
 
 a {
   color: #fff;
   text-decoration: none;
-  
+
   display: inline-block;
   position: relative;
 }
 
-a:after {    
+a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -50,10 +49,8 @@ a:after {
   width: 0;
 }
 
-a:hover:after { 
-  width: 100%; 
-  left: 0; 
+a:hover:after {
+  width: 100%;
+  left: 0;
 }
-
-
 </style>

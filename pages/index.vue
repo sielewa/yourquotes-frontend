@@ -1,73 +1,73 @@
 <template>
-    <div class="container section">
-      <QuotationsContainer :quotations="itemsForList"/>
-      <div class="pagination_container">
-        <Pagination 
+  <div class="container section">
+    <QuotesContainer :quotes="itemsForList" />
+    <div class="pagination_container">
+      <Pagination
         :totalPages="pagination.totalPages"
         :perPage="pagination.perPage"
         :currentPage="currentPage"
         @pagechanged="onPageChange"
       />
-      </div>
     </div>
+  </div>
 </template>
 
 <script>
-
 export default {
-
   name: "HomePage",
 
   data: () => ({
     perPage: 7,
-    currentPage: 1
+    currentPage: 1,
   }),
 
   computed: {
-    itemsForList(){
-      return this.quotations
-    }
+    itemsForList() {
+      return this.quotes;
+    },
   },
 
   methods: {
     async onPageChange(page) {
       this.currentPage = page;
-      
+
       const requestQuery = {
         page: this.currentPage,
-        limit: this.perPage
-      }
-      
-      const res = await this.$store.dispatch('quotation/getQuotations', requestQuery)
-      const quotations = res.quotations
-      this.quotations = quotations
-    }
+        limit: this.perPage,
+      };
+
+      const res = await this.$store.dispatch(
+        "quotes/getQuotes",
+        requestQuery
+      );
+      const quotes = res.quotes;
+      this.quotes = quotes;
+    },
   },
 
-  async asyncData({query, store}){
-
+  async asyncData({ query, store }) {
     const defaultQuery = {
       page: 1,
-      limit: 7
-    }
+      limit: 7,
+    };
 
-    const userQuery = query
+    const userQuery = query;
     const requestQuery = {
       ...defaultQuery,
-      ...userQuery
-    }
+      ...userQuery,
+    };
 
-    const res = await store.dispatch('quotation/getQuotations', requestQuery)
-    const quotations = res.quotations
-    const pagination = res.pagination
-    return { quotations, pagination }
-  }
-}
+    const res = await store.dispatch("quotes/getQuotes", requestQuery);
+    const quotes = res.quotes;
+    const pagination = res.pagination;
+    return { quotes, pagination };
+  },
+};
 </script>
 
 <style lang="scss">
-  .pagination_container {
-    display: flex;
-    justify-content: center;
-  }
+.pagination_container {
+  display: flex;
+  justify-content: center;
+}
 </style>
