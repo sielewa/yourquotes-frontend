@@ -42,8 +42,8 @@ export const actions = {
 			decodeToken = JSON.parse(Buffer.from(decodeToken, 'base64').toString())
 			const accessTokenExpiresAt = decodeToken.exp - 30
 
-			let Datenow = Date.now() / 1000
-			if (Datenow > accessTokenExpiresAt) {
+			let dateNow = Date.now() / 1000
+			if (dateNow > accessTokenExpiresAt) {
 				console.dir('wygasł')
 				await dispatch('refreshToken', res)
 				return
@@ -73,7 +73,7 @@ export const actions = {
 	async authMe({ dispatch, commit }) {
 		try {
 			const result = await this.$axios.get('/api/auth/me')
-			commit('SET_USER', result.data.username)
+			commit('SET_USER', result.data.user)
 		} catch (error) {
 			console.log(error)
 		}

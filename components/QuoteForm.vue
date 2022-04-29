@@ -1,5 +1,5 @@
 <template>
-  <div class="add_quote">
+  <div class="quote_form_container">
     <form class="quote_form" @submit.prevent="addQuote($event)">
       <textarea v-model="text" placeholder="Enter text"></textarea>
       <Button element="submit" value="Add" @click="addQuote" />
@@ -11,7 +11,7 @@
 </template>
 
 <style lang="scss">
-.add_quote {
+.quote_form_container {
   text-align: center;
 
   & > p {
@@ -26,21 +26,21 @@
     color: green;
   }
 }
+
 .quote_form {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   margin-top: 20px;
-  max-width: 600px;
-  min-width: 600px;
+	min-width: 300px;
   min-height: 200px;
   background-color: $secondary;
   border-radius: 50px;
   border: 2px solid black;
 
   & > textarea {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     width: 80%;
     height: 100px;
     padding: 10px 15px;
@@ -48,23 +48,28 @@
     border: 1px solid black;
     resize: none;
   }
+}
 
-  @media (max-width: $screen-md) {
+@media screen and (min-width: $screen-sm) {
+	.quote_form {
     max-width: 500px;
     min-width: 500px;
 
     textarea {
       font-size: 2rem;
     }
-  }
+	}
+}
 
-  @media (max-width: $screen-sm) {
-    min-width: 300px;
+@media screen and (min-width: $screen-md) {
+  .quote_form {
+		max-width: 600px;
+  	min-width: 600px;
 
-    textarea {
-      font-size: 1.5rem;
+		textarea {
+      font-size: 2.5rem;
     }
-  }
+	}
 }
 </style>
 

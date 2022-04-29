@@ -1,5 +1,5 @@
 <template>
-  <div class="login_container">
+  <div class="login_form_container">
     <div class="login_form">
       <div class="title">
         <span>Log in to YourQuotes!</span>
@@ -37,9 +37,17 @@
 </template>
 
 <style lang="scss">
-.login_container {
+.login_form_container {
+
+	& > p {
+		text-align: center;
+		padding-top: 15px;
+		font-size: 1.5rem;
+		color: red;
+	}
+
   .login_form {
-    min-width: 600px;
+    min-width: 300px;
 
     padding: 10px 10px 10px 10px;
     background-color: #ffff;
@@ -47,7 +55,7 @@
     border-radius: 20px;
 
     .title {
-      font-size: 4rem;
+      font-size: 2.8rem;
       text-align: center;
     }
 
@@ -65,12 +73,12 @@
       justify-content: space-around;
 
       span {
-        font-size: 3rem;
+        font-size: 1.4rem;
       }
 
       input {
         width: 70%;
-        font-size: 2.5rem;
+        font-size: 1.4rem;
         border: 1px solid $secondary;
         border-radius: 10px;
         padding-left: 5px;
@@ -81,50 +89,47 @@
         }
       }
     }
-
-    @media (max-width: $screen-md) {
-      min-width: 450px;
-
-      .title {
-        font-size: 3.2rem;
-      }
-
-      .input_form {
-        span {
-          font-size: 2rem;
-        }
-
-        input {
-          font-size: 2rem;
-        }
-      }
-    }
-
-    @media (max-width: $screen-sm) {
-      min-width: 300px;
-
-      .title {
-        font-size: 2.8rem;
-      }
-
-      .input_form {
-        span {
-          font-size: 1.4rem;
-        }
-
-        input {
-          font-size: 1.4rem;
-        }
-      }
-    }
   }
+}
 
-  & > p {
-    text-align: center;
-    padding-top: 15px;
-    font-size: 1.5rem;
-    color: red;
-  }
+@media (min-width: $screen-sm) {
+	.login_form_container > .login_form {
+		min-width: 450px;
+
+		.title {
+			font-size: 3.2rem;
+		}
+
+		.input_form {
+			span {
+				font-size: 2rem;
+			}
+
+			input {
+				font-size: 2rem;
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-md) {
+	.login_form_container > .login_form {
+		min-width: 600px;
+
+		.title {
+			font-size: 4rem;
+		}
+
+		.input_form {
+			span {
+				font-size: 2.8rem;
+			}
+
+			input {
+				font-size: 2.4rem;
+			}
+		}
+	}
 }
 </style>
 

@@ -1,14 +1,12 @@
 <template>
   <div class="container section">
     <QuotesContainer :quotes="itemsForList" />
-    <div class="pagination_container">
-      <Pagination
-        :totalPages="pagination.totalPages"
-        :perPage="pagination.perPage"
-        :currentPage="currentPage"
-        @pagechanged="onPageChange"
-      />
-    </div>
+    <Pagination
+      :totalPages="pagination.totalPages"
+			:perPage="pagination.perPage"
+			:currentPage="currentPage"
+			@pagechanged="onPageChange"
+    />
   </div>
 </template>
 
@@ -64,10 +62,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.pagination_container {
-  display: flex;
-  justify-content: center;
-}
-</style>

@@ -31,32 +31,36 @@ export default {
   align-items: center;
   padding-bottom: 20px;
 
-  & > .username_container {
-    & > .username {
-      font-size: 7rem;
-
-      @media (max-width: $screen-md) {
-        font-size: 5.5rem;
-      }
-
-      @media (max-width: $screen-sm) {
-        font-size: 4.8rem;
-      }
-    }
+  & > .username_container > .username {
+		font-size: 4.8rem;
   }
 
-  & > .user_stat {
-    & > .stats {
-      font-size: 3rem;
-
-      @media (max-width: $screen-md) {
-        font-size: 2.2rem;
-      }
-
-      @media (max-width: $screen-sm) {
-        font-size: 1.8rem;
-      }
-    }
+  & > .user_stat > .stats {
+    font-size: 1.8rem;
   }
+}
+
+@media screen and (min-width: $screen-sm) {
+	.user_info_container {
+		.username_container > .username {
+			font-size: 5.5rem;
+		}
+
+		.user_stat > .stats {
+			font-size: 2.2rem;
+		}
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.user_info_container {
+		.username_container > .username {
+			font-size: 7rem;
+		}
+
+		.user_stat > .stats {
+			font-size: 3rem;
+		}
+	}
 }
 </style>

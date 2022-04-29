@@ -1,10 +1,6 @@
 <template>
-  <div class="limiter">
-    <div class="container-login">
-      <div class="warp-login">
-        <RegisterForm />
-      </div>
-    </div>
+  <div class="section container-register">
+		<RegisterForm />
   </div>
 </template>
 
@@ -15,15 +11,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.limiter {
+.container-register {
   width: 100%;
-  margin: 0 auto;
-  background-color: red;
-}
-
-.container-login {
-  width: 100%;
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -31,12 +21,5 @@ export default {
   padding: 15px;
   position: relative;
   background-color: #fff;
-}
-
-.wrap-login {
-  width: 500px;
-  background: #fff;
-  border-radius: 20px;
-  overflow: hidden;
 }
 </style>

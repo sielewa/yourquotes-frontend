@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section class="section container-add">
     <AddQuoteContainer />
   </section>
 </template>
@@ -13,4 +13,15 @@ export default {
   middleware: "is-logged-in",
 };
 </script>
+
+<style lang="scss">
+.container-add {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+}
+</style>
 

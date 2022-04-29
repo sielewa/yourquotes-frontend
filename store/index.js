@@ -16,11 +16,6 @@ export const getters = {
 
 export const actions = {
 	async nuxtServerInit({ dispatch, commit }, ctx) {
-		//const req = ctx.req;
-		//const headers = (req && req.headers) ? Object.assign({}, req.headers) : {}
-		//const xForwardedFor = headers['x-forwarded-for'];
-		//const xRealIp = headers['x-real-ip'];
-		//commit('SET_IP', xForwardedFor || xRealIp);
 		try {
 			await dispatch('users/checkRefreshToken', ctx);
 		} catch (error) {

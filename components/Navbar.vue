@@ -14,7 +14,7 @@
         </li>
 
         <li v-if="isLoggedIn" class="list_item">
-          <NuxtLink :to="`/users/${$store.getters['users/getUser']}`">
+          <NuxtLink :to="`/users/${$store.getters['users/getUser'].username}`">
             My Profile
           </NuxtLink>
         </li>

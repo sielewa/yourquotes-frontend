@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="user_container">
     <UserInfo :username="username" :quotes_count="quotes_count" />
     <UserQuotes :quotes="quotes" />
   </div>

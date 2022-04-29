@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="quotes_container">
     <Quote
       id="quote"
       v-for="quote in itemsForList"
@@ -27,6 +27,24 @@ export default {
 
   computed: {
     itemsForList() {
+			this.quotesData = this.quotes;
+			this.quotesData.map((quote) => {
+				let dateComponents = quote.created_at.split("T");
+        let date = dateComponents[0];
+        let time = dateComponents[1].split(".")[0];
+        quote.date = date;
+        quote.time = time;
+        quote.isAuthor = false;
+
+        if (this.$store.getters["users/getUser"]) {
+					if (quote.user_id === this.$store.getters["users/getUser"].id) {
+						quote.isAuthor = true;
+					}
+        }
+			})
+
+			return this.quotesData;
+			/*
       this.quotesData = this.quotes;
       for (const quote of this.quotesData) {
         let dateComponents = quote.created_at.split("T");
@@ -40,7 +58,7 @@ export default {
           quote.isAuthor = true;
         }
       }
-      return this.quotesData;
+      return this.quotesData;*/
     },
   },
 };
@@ -48,7 +66,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.content {
+.quotes_container {
   display: flex;
   flex-direction: column;
   align-items: center;

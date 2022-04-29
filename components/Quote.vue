@@ -64,8 +64,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin: 20px 10px;
-  max-width: 700px;
-  min-width: 700px;
+  min-width: 300px;
   min-height: 120px;
 
   & > .top_container {
@@ -73,7 +72,7 @@ export default {
     justify-content: space-between;
 
     & > .author_container {
-      font-size: 2.5rem;
+      font-size: 1.5rem;
       padding-bottom: 5px;
       padding-left: 20px;
 
@@ -107,7 +106,7 @@ export default {
       padding-top: 10px;
       padding-right: 10px;
       & > svg {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         color: red;
         background: none;
       }
@@ -123,57 +122,63 @@ export default {
     font-family: "Dancing Script", cursive;
     width: 100%;
     padding: 10px;
-    font-size: 4rem;
+    font-size: 2.5rem;
     text-align: center;
     border-radius: 30px;
   }
 
   & > .date_container {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     display: flex;
     justify-content: right;
     padding-top: 5px;
     padding-right: 20px;
   }
-
-  @media (max-width: $screen-md) {
-    min-width: 550px;
-
-    .top_container > .author_container {
-      font-size: 2rem;
-    }
-
-    .top_container > .del > svg {
-      font-size: 2rem;
-    }
-
-    .quote_text {
-      font-size: 3rem;
-    }
-
-    .date_container {
-      font-size: 1.3rem;
-    }
-  }
-
-  @media (max-width: $screen-sm) {
-    min-width: 300px;
-
-    .quote_text {
-      font-size: 2.5rem;
-    }
-
-    .top_container > .author_container {
-      font-size: 1.5rem;
-    }
-
-    .top_container > .del > svg {
-      font-size: 1.5rem;
-    }
-
-    .date_container {
-      font-size: 1.1rem;
-    }
-  }
 }
+
+@media screen and (min-width: $screen-sm) {
+	.quote_container {
+		min-width: 550px;
+
+		.top_container > .author_container {
+			font-size: 2rem;
+		}
+
+		.top_container > .del > svg {
+			font-size: 2rem;
+		}
+
+		.quote_text {
+			font-size: 3rem;
+		}
+
+		.date_container {
+			font-size: 1.3rem;
+		}
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.quote_container {
+		min-width: 700px;
+		max-width: 700px;
+
+		.top_container > .author_container {
+			font-size: 2.5rem;
+		}
+
+		.top_container > .del > svg {
+			font-size: 2.5rem;
+		}
+
+		.quote_text {
+			font-size: 4rem;
+		}
+
+		.date_container {
+			font-size: 1.5rem;
+		}
+	}
+}
+
 </style>
