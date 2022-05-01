@@ -14,7 +14,7 @@
         </li>
 
         <li v-if="isLoggedIn" class="list_item">
-          <NuxtLink :to="`/users/${$store.getters['users/getUser'].username}`">
+          <NuxtLink :to="`/users/${this.username}`">
             My Profile
           </NuxtLink>
         </li>
@@ -42,7 +42,7 @@ export default {
   mounted() {
     if (this.$store.getters["users/isLoggedIn"]) {
       this.isLoggedIn = true;
-      this.username = this.$store.getters["users/getUser"];
+      this.username = this.$store.getters["users/getUser"].username;
     }
 
     const bar = document.querySelector(".nav-bar");

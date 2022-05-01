@@ -44,7 +44,6 @@ export const actions = {
 
 			let dateNow = Date.now() / 1000
 			if (dateNow > accessTokenExpiresAt) {
-				console.dir('wygasł')
 				await dispatch('refreshToken', res)
 				return
 			}
@@ -105,7 +104,7 @@ export const actions = {
 			const res = await this.$axios.$post('/api/auth/logout')
 
 		} catch (err) {
-			console.dir(err);
+			console.log(err);
 		}
 	},
 
