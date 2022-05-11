@@ -1,5 +1,9 @@
+import isLoggedIn from "~/middleware/is-logged-in";
+
 export default (ctx) => {
 	setInterval(async () => {
-		await ctx.store.dispatch('users/checkRefreshToken', ctx);
+		if (isLoggedIn) {
+			await ctx.store.dispatch('users/checkRefreshToken', ctx);
+		}
 	}, 30000)
 };
