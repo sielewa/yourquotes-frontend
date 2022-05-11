@@ -24,7 +24,6 @@ body {
 
 html {
   scroll-behavior: smooth;
-  height: 100%;
 }
 
 .section {
