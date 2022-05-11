@@ -1,5 +1,5 @@
 <template>
-  <div class="container section">
+  <div class="section">
     <QuotesContainer :quotes="itemsForList" />
     <Pagination
       :totalPages="pagination.totalPages"
@@ -40,6 +40,8 @@ export default {
       );
       const quotes = res.quotes;
       this.quotes = quotes;
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0;
     },
   },
 

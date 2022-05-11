@@ -15,13 +15,14 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 80%;
 
 	& > .title > span {
 		font-size: 4rem;
 	}
 
 	& > .description > span {
-		font-size: 1.8rem;
+		font-size: 1.2rem;
 	}
 }
 
@@ -32,7 +33,7 @@
 		}
 
 		.description > span {
-			font-size: 2.3rem;
+			font-size: 1.8rem;
 		}
 	}
 }
@@ -44,7 +45,7 @@
 		}
 
 		.description > span {
-			font-size: 3rem;
+			font-size: 2.2rem;
 		}
 	}
 }

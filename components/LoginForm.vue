@@ -50,7 +50,7 @@
     min-width: 300px;
 
     padding: 10px 10px 10px 10px;
-    background-color: #ffff;
+    background-color: $secondary;
     border: 2px solid black;
     border-radius: 20px;
 

@@ -104,7 +104,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $primary;
+  background-color: $secondary;
   color: white;
   font-size: 1.5rem;
   font-weight: 600;
@@ -114,6 +114,7 @@ a {
   width: 100%;
   top: 0;
   z-index: 99;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0, 0.2);
 }
 
 .nav-logo {
@@ -140,11 +141,29 @@ a {
   width: 94%;
   top: 5rem;
   left: 18px;
-  background-color: $primary;
   padding-bottom: 10px;
+	background-color: $secondary;
 
   & > li {
     padding-top: 10px;
+
+		a:after {
+			background: none repeat scroll 0 0 transparent;
+			bottom: 0;
+			content: "";
+			display: block;
+			height: 2px;
+			left: 50%;
+			position: absolute;
+			background: #fff;
+			transition: width 0.3s ease 0s, left 0.3s ease 0s;
+			width: 0;
+		}
+
+		a:hover:after {
+			width: 100%;
+			left: 0;
+		}
   }
 }
 

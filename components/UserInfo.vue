@@ -30,6 +30,7 @@ export default {
   flex-direction: column;
   align-items: center;
   padding-bottom: 20px;
+	text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
 
   & > .username_container > .username {
 		font-size: 4.8rem;

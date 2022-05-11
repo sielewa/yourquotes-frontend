@@ -19,9 +19,9 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  padding: 15px;
   position: relative;
+	padding-top: 10vh;
 }
+
 </style>
 

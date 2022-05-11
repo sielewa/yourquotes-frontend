@@ -155,7 +155,7 @@ export default {
 		}
 
 		.active {
-			background-color: #4aae9b;
+			background-color: $secondary;
 			color: #ffffff;
 		}
 	}

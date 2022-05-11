@@ -1,7 +1,9 @@
 <template>
   <div>
     <Navbar />
-    <Nuxt />
+		<div class="background">
+			<Nuxt />
+		</div>
   </div>
 </template>
 
@@ -15,8 +17,9 @@
 body {
   max-width: 100%;
   height: 100%;
-  background-color: #ffff;
+  background-color: $primary;
   font-family: "Source Sans Pro", sans-serif;
+	color: white;
 }
 
 html {
@@ -25,7 +28,11 @@ html {
 }
 
 .section {
-  margin-top: 90px;
+  margin-top: 80px;
+	background-color: rgba($primary, 0.8);
+	width: 80%;
+	padding-top: 10px;
+	min-height: 90vh;
 }
 
 a {
@@ -36,21 +43,32 @@ a {
   position: relative;
 }
 
-a:after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 2px;
-  left: 50%;
-  position: absolute;
-  background: #fff;
-  transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  width: 0;
+.background {
+	background-image: url('../assets/img/background.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+
+	display: flex;
+	justify-content: center;
 }
 
-a:hover:after {
-  width: 100%;
-  left: 0;
+@media screen and (min-width: $screen-sm) {
+	.section {
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: $screen-md) {
+	.section {
+		width: 60%;
+	}
+}
+
+@media screen and (min-width: $screen-lg) {
+	.section {
+		width: 50%;
+	}
 }
 </style>

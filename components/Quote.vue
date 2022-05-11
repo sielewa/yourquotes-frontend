@@ -6,15 +6,13 @@
           <NuxtLink :to="`/users/${author}`"> {{ author }} </NuxtLink>
         </span>
       </div>
-      <div class="del">
-        <font-awesome-icon v-if="isAuthor" icon="x" @click="deleteQuote" />
+      <div class="info_container">
+				<span v-if="isAuthor" class="del" @click="deleteQuote">Delete</span>
+        <span class="date"> {{ time }} | {{ date }} </span>
       </div>
     </div>
     <div class="quote_text">
       <span> "{{ text }}" </span>
-    </div>
-    <div class="date_container">
-      <span> {{ time }} | {{ date }} </span>
     </div>
   </div>
 </template>
@@ -61,123 +59,104 @@ export default {
 
 <style lang="scss">
 .quote_container {
+	color: white;
   display: flex;
   flex-direction: column;
-  margin: 20px 10px;
-  min-width: 300px;
-  min-height: 120px;
+  margin: 10px 0px;
+  width: 90%;
+	border: 2px solid black;
+	background-color: $primary;
 
   & > .top_container {
     display: flex;
     justify-content: space-between;
+		align-items: center;
 
     & > .author_container {
-      font-size: 1.5rem;
-      padding-bottom: 5px;
-      padding-left: 20px;
+      font-size: 1.2rem;
+      margin-left: 10px;
+			margin-top: 3px;
 
       & > span a {
-        color: black;
+				color: white;
         text-decoration: none;
         display: inline-block;
         position: relative;
 
-        &:after {
-          background: none repeat scroll 0 0 transparent;
-          bottom: 0;
-          content: "";
-          display: block;
-          height: 2px;
-          left: 50%;
-          position: absolute;
-          background: black;
-          transition: width 0.3s ease 0s, left 0.3s ease 0s;
-          width: 0;
-        }
-
-        &:hover:after {
-          width: 100%;
-          left: 0;
-        }
+				&:hover {
+					color: #888888;
+					transition: color 200ms;
+				}
       }
     }
 
-    & > .del {
-      padding-top: 10px;
-      padding-right: 10px;
-      & > svg {
-        font-size: 1.5rem;
-        color: red;
-        background: none;
-      }
-      & :hover {
-        color: #961b1b;
-        cursor: pointer;
-      }
+    & > .info_container {
+			display: flex;
+			justify-content: right;
+			align-items: center;
+			font-size: 1rem;
+			margin-top: 5px;
+			margin-right: 10px;
+
+			.del {
+				cursor: pointer;
+				color: red;
+				margin-right: 10px;
+
+				&:hover {
+				color: #9F0000;
+				transition: color 200ms;
+				}
+			}
     }
   }
 
   & > .quote_text {
-    background-color: $secondary;
     font-family: "Dancing Script", cursive;
     width: 100%;
     padding: 10px;
     font-size: 2.5rem;
     text-align: center;
-    border-radius: 30px;
-  }
-
-  & > .date_container {
-    font-size: 1.1rem;
-    display: flex;
-    justify-content: right;
-    padding-top: 5px;
-    padding-right: 20px;
+		border-top: 2px solid black;
+		background-color: $secondary;
   }
 }
 
 @media screen and (min-width: $screen-sm) {
 	.quote_container {
-		min-width: 550px;
 
-		.top_container > .author_container {
-			font-size: 2rem;
+		& > .top_container {
+			& > .author_container {
+				font-size: 2rem;
+			}
+			& > .info_container {
+				font-size: 1.4rem;
+			}
 		}
 
-		.top_container > .del > svg {
-			font-size: 2rem;
+		& > .quote_text {
+			font-size: 3.3rem;
 		}
 
-		.quote_text {
-			font-size: 3rem;
-		}
-
-		.date_container {
-			font-size: 1.3rem;
-		}
 	}
 }
 
 @media screen and (min-width: $screen-md) {
 	.quote_container {
-		min-width: 700px;
-		max-width: 700px;
 
-		.top_container > .author_container {
-			font-size: 2.5rem;
+		& > .top_container {
+			& > .author_container {
+				font-size: 2.5rem;
+			}
+			& > .info_container {
+				font-size: 1.8rem;
+			}
 		}
 
-		.top_container > .del > svg {
-			font-size: 2.5rem;
-		}
-
-		.quote_text {
+		& > .quote_text {
 			font-size: 4rem;
 		}
 
-		.date_container {
-			font-size: 1.5rem;
-		}
 	}
 }
 

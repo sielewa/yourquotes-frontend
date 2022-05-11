@@ -33,10 +33,9 @@
   justify-content: space-evenly;
   align-items: center;
   margin-top: 20px;
-	min-width: 300px;
-  min-height: 200px;
+	min-width: 240px;
+  height: 200px;
   background-color: $secondary;
-  border-radius: 50px;
   border: 2px solid black;
 
   & > textarea {
@@ -52,9 +51,7 @@
 
 @media screen and (min-width: $screen-sm) {
 	.quote_form {
-    max-width: 500px;
-    min-width: 500px;
-
+		min-width: 380px;
     textarea {
       font-size: 2rem;
     }
@@ -63,9 +60,7 @@
 
 @media screen and (min-width: $screen-md) {
   .quote_form {
-		max-width: 600px;
-  	min-width: 600px;
-
+		min-width: 480px;
 		textarea {
       font-size: 2.5rem;
     }
