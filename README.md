@@ -1,4 +1,4 @@
-# cytatys-frontend
+# yourquotes-frontend
 
 ## Build Setup
 
